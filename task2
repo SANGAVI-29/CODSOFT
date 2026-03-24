@@ -1,0 +1,38 @@
+def read_number(text):
+    while True:
+        try:
+            return float(input(text))
+        except:
+            print("Invalid input")
+
+n1 = read_number("Enter first number: ")
+n2 = read_number("Enter second number: ")
+
+print("1.Addition")
+print("2.Subtraction")
+print("3.Multiplication")
+print("4.Division")
+
+choice = input("Choose operation (1-4): ")
+
+if choice == "1":
+    result = n1 + n2
+    print("Result:", result)
+
+elif choice == "2":
+    result = n1 - n2
+    print("Result:", result)
+
+elif choice == "3":
+    result = n1 * n2
+    print("Result:", result)
+
+elif choice == "4":
+    if n2 != 0:
+        result = n1 / n2
+        print("Result:", result)
+    else:
+        print("Division by zero not allowed")
+
+else:
+    print("Invalid choice")
