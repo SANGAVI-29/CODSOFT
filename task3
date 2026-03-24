@@ -1,0 +1,35 @@
+import random
+
+size = int(input("Enter required password length: "))
+
+print("Select complexity level")
+print("1 - Letters only")
+print("2 - Letters and Numbers")
+print("3 - Letters, Numbers and Symbols")
+
+level = input("Enter option (1/2/3): ")
+
+letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+numbers = "0123456789"
+symbols = "@#%&*?"
+
+pool = ""
+
+if level == "1":
+    pool = letters
+elif level == "2":
+    pool = letters + numbers
+elif level == "3":
+    pool = letters + numbers + symbols
+else:
+    pool = letters
+
+result = ""
+
+count = 0
+while count < size:
+    index = random.randint(0, len(pool) - 1)
+    result = result + pool[index]
+    count = count + 1
+
+print("Your password is:", result)
