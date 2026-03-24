@@ -1,0 +1,98 @@
+
+task_list = []
+def display_options():
+    print("\n====== TASK ORGANIZER ======")
+    print("1. Create New Task")
+    print("2. Show All Tasks")
+    print("3. Edit Existing Task")
+    print("4. Remove Task")
+    print("5. Complete Task")
+    print("6. Quit Program")
+
+def create_task():
+    name = input("Type your task: ")
+    item = {
+        "name": name,
+        "status": "Pending"
+    }
+    task_list.append(item)
+    print("New task saved.")
+
+
+def show_tasks():
+    if len(task_list) == 0:
+        print("Task list is empty.")
+    else:
+        print("\n--- Current Tasks ---")
+        count = 1
+        for t in task_list:
+            print(count, "-", t["name"], "[", t["status"], "]")
+            count += 1
+
+def edit_task():
+    show_tasks()
+    if task_list:
+        try:
+            num = int(input("Enter task number to edit: "))
+            if num >= 1 and num <= len(task_list):
+                updated = input("Enter updated task name: ")
+                task_list[num - 1]["name"] = updated
+                print("Task updated.")
+            else:
+                print("Number out of range.")
+        except:
+            print("Invalid input.")
+
+def remove_task():
+    show_tasks()
+    if task_list:
+        try:
+            num = int(input("Enter task number to remove: "))
+            if 1 <= num <= len(task_list):
+                deleted = task_list.pop(num - 1)
+                print("Removed:", deleted["name"])
+            else:
+                print("Invalid number.")
+        except:
+            print("Please enter a number.")
+
+
+def complete_task():
+    show_tasks()
+    if task_list:
+        try:
+            num = int(input("Enter task number to mark complete: "))
+            if 1 <= num <= len(task_list):
+                task_list[num - 1]["status"] = "Finished"
+                print("Task completed successfully.")
+            else:
+                print("Invalid task number.")
+        except:
+            print("Invalid input.")
+
+
+while True:
+    display_options()
+    choice = input("Select option (1-6): ")
+
+    if choice == "1":
+        create_task()
+
+    elif choice == "2":
+        show_tasks()
+
+    elif choice == "3":
+        edit_task()
+
+    elif choice == "4":
+        remove_task()
+
+    elif choice == "5":
+        complete_task()
+
+    elif choice == "6":
+        print("Program closed.")
+        break
+
+    else:
+        print("Wrong choice. Try again.")
